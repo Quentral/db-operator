@@ -223,7 +223,13 @@ func generateDatabaseSecretData(dbcr *kciv1alpha1.Database) (map[string][]byte, 
 	}
 	dbName := dbcr.Namespace + "-" + dbcr.Name
 	dbUser := dbcr.Namespace + "-" + dbcr.Name
-	dbPassword := kci.GeneratePass()
+    if dbcr.Spec.UserName != "" {
+        dbUser = dbcr.Spec.UserName
+    }
+    dbPassword := kci.GeneratePass()
+	if dbcr.Spec.Password != "" {
+        dbPassword = dbcr.Spec.Password
+    }
 
 	switch engine {
 	case "postgres":

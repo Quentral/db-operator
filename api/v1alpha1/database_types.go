@@ -26,6 +26,8 @@ import (
 
 // DatabaseSpec defines the desired state of Database
 type DatabaseSpec struct {
+    UserName        string         `json:"userName,omitempty"`
+    Password        string         `json:"password,omitempty"`
 	SecretName        string         `json:"secretName"`
 	Instance          string         `json:"instance"`
 	DeletionProtected bool           `json:"deletionProtected"`
